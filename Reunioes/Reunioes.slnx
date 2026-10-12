@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Reunioes.API/Reunioes.API.csproj" />
+  <Project Path="Reunioes.Application/Reunioes.Application.csproj" />
+  <Project Path="Reunioes.Domain/Reunioes.Domain.csproj" />
+  <Project Path="Reunioes.Infra/Reunioes.Infra.csproj" />
+</Solution>
