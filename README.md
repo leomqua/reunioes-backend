@@ -59,10 +59,3 @@ Para criar ou reagendar uma reserva, envie a data e os horários em campos separ
 - `GET /api/relatorios/salas/disponibilidade` — retorna cada sala e calcula as horas livres para hoje, considerando o expediente completo das 08:00 às 19:00. Também informa quantas reservas foram criadas nos últimos sete dias.
 
 Somente reservas que se sobrepõem ao expediente de hoje reduzem as horas livres. A contagem de reservas recentes é independente da disponibilidade de hoje.
-<<<<<<< HEAD
-=======
-
-## Testes manuais
-
-O arquivo [`Reunioes/Reunioes.API/Reunioes.API.http`](./Reunioes/Reunioes.API/Reunioes.API.http) contém exemplos de chamadas para todos os endpoints. Atualize os IDs de sala e reserva conforme as respostas de criação.
->>>>>>> 358fa0f (implementa métodos de salas e reservas e adiciona migrations)
