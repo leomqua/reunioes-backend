@@ -12,6 +12,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     <PackageReference Include="System.Text.Json" Version="9.0.20" ExcludeAssets="build;buildTransitive;analyzers" />
     <ProjectReference Include="..\Reunioes.Application\Reunioes.Application.csproj" />
     <ProjectReference Include="..\Reunioes.Infra\Reunioes.Infra.csproj" />

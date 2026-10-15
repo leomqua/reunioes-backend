@@ -29,10 +29,14 @@ namespace Reunioes.Infra.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("Fim")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("Inicio")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("CriadaEm")
+                        .HasDefaultValueSql("LOCALTIMESTAMP")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("SalaId")
                         .HasColumnType("uuid");

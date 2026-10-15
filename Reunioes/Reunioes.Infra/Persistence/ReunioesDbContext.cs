@@ -5,8 +5,7 @@ namespace Reunioes.Infra.Persistence;
 
 public class ReunioesDbContext : DbContext
 {
-    public ReunioesDbContext(
-        DbContextOptions<ReunioesDbContext> options)
+    public ReunioesDbContext(DbContextOptions<ReunioesDbContext> options)
         : base(options)
     {
     }
@@ -44,10 +43,16 @@ public class ReunioesDbContext : DbContext
         {
             entity.HasKey(r => r.Id);
 
+            entity.Property(r => r.CriadaEm)
+                .HasColumnType("timestamp without time zone")
+                .HasDefaultValueSql("LOCALTIMESTAMP");
+
             entity.Property(r => r.Inicio)
+                .HasColumnType("timestamp without time zone")
                 .IsRequired();
 
             entity.Property(r => r.Fim)
+                .HasColumnType("timestamp without time zone")
                 .IsRequired();
 
             entity.HasIndex(r => new

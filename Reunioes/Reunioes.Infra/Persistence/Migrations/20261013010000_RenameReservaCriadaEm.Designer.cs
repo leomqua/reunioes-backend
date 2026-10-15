@@ -1,0 +1,87 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using Reunioes.Infra.Persistence;
+
+#nullable disable
+
+namespace Reunioes.Infra.Persistence.Migrations
+{
+    [DbContext(typeof(ReunioesDbContext))]
+    [Migration("20261013010000_RenameReservaCriadaEm")]
+    partial class RenameReservaCriadaEm
+    {
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        {
+#pragma warning disable 612, 618
+            modelBuilder
+                .HasAnnotation("ProductVersion", "9.0.20")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Reunioes.Domain.Entities.Reserva", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid");
+
+                b.Property<DateTime>("CriadaEm")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                    .HasColumnType("timestamp with time zone");
+
+                b.Property<DateTime>("Fim")
+                    .HasColumnType("timestamp with time zone");
+
+                b.Property<DateTime>("Inicio")
+                    .HasColumnType("timestamp with time zone");
+
+                b.Property<Guid>("SalaId")
+                    .HasColumnType("uuid");
+
+                b.HasKey("Id");
+                b.HasIndex("SalaId", "Inicio", "Fim");
+                b.ToTable("Reservas");
+            });
+
+            modelBuilder.Entity("Reunioes.Domain.Entities.Sala", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid");
+
+                b.Property<int>("Andar")
+                    .HasColumnType("integer");
+
+                b.Property<string>("Nome")
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .HasColumnType("character varying(150)");
+
+                b.Property<int>("QuantidadeAssentos")
+                    .HasColumnType("integer");
+
+                b.HasKey("Id");
+                b.ToTable("Salas");
+            });
+
+            modelBuilder.Entity("Reunioes.Domain.Entities.Reserva", b =>
+            {
+                b.HasOne("Reunioes.Domain.Entities.Sala", "Sala")
+                    .WithMany("Reservas")
+                    .HasForeignKey("SalaId")
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .IsRequired();
+
+                b.Navigation("Sala");
+            });
+
+            modelBuilder.Entity("Reunioes.Domain.Entities.Sala", b =>
+            {
+                b.Navigation("Reservas");
+            });
+#pragma warning restore 612, 618
+        }
+    }
+}
